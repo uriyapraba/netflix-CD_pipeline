@@ -10,7 +10,8 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: 1.0.0-7
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: jfrog-reg-cred
 nameOverride: ""
 fullnameOverride: "netflix"
 
