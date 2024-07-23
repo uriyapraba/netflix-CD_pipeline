@@ -16,7 +16,7 @@ nameOverride: ""
 fullnameOverride: "netflix"
 
 ports:
-  name: netflixEndpoint
+  name: netflixendpoint
   containerPort: 80
   type: ""
 
