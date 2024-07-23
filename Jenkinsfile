@@ -73,7 +73,7 @@ pipeline
                 script
                 {
                     sh """
-                    helm upgrade --install . --atomic
+                    helm upgrade --install ${APP_NAME} . --atomic
                     """
                 }
             }
