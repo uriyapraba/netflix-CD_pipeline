@@ -4,8 +4,16 @@ pipeline
     {
         node
         {
-            label 'helm'
+            label 'master'
         }
+    }
+    parameters 
+    {
+        string description: 'Description of the environment variable', name: 'IMAGE_TAG'
+    }
+    environment
+    {
+        IMAGE_TAG = "${params.IMAGE_TAG}"
     }
     stages
     {
@@ -13,8 +21,23 @@ pipeline
         {
             steps
             {
-                checkout scmGit(branches: [[name: 'origin/dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/uriyapraba/DevSecOps-Project.git']])
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/uriyapraba/netflix-CD_pipeline.git']])
+            }
+        }
+        
+        stage('Updating helm chart with latest image tag')
+        {
+            steps
+            {
+                script
+                {
+                    sh '''
+                    echo "ImageTag: ${IMAGE_TAG}"
+                    '''
+                }
+
             }
         }
     }
+
 }
